@@ -9,10 +9,22 @@ services:
       - '80:80'
     restart: unless-stopped
     networks:
-      - global
+      - public
+  
+  database:
+    image: postgres:latest
+    restart: unless-stopped
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: 1111
+    volumes:
+      - ./src/database:/docker-entrypoint-initdb.d
+    networks:
+      - private
 
 networks:
-  global:
+  public:
     driver: bridge
-  local:
+  private:
     driver: bridge
+    
