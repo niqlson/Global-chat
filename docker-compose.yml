@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  web-server:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./src/frontend:/usr/share/nginx/html:ro
+    ports:
+      - '80:80'
+    restart: unless-stopped
+    networks:
+      - global
+
+networks:
+  global:
+    driver: bridge
+  local:
+    driver: bridge
