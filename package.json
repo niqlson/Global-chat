@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "test": "npm run -s lint",
+    "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\"",
+    "fix": "eslint . --fix && prettier --write \"**/*.js\" \"**/*.json\""
+  },
+  "devDependencies": {
+    "eslint": "^9.26.0",
+    "eslint-config-metarhia": "^9.1.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "prettier": "^3.5.3"
+  },
+  "dependencies": {
+    "knex": "^3.1.0",
+    "pg": "^8.16.0"
+  }
+}
