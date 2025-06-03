@@ -1,4 +1,4 @@
-version: '3.5'
+
 services:
   backend:
     image: node:23-alpine3.20
@@ -39,12 +39,15 @@ services:
     volumes:
       - ./src/database:/opt/global_chat/sql
       - ./docker/database:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - private
+
+  volumes:
+    postgres_data:
 
 networks:
   public:
     driver: bridge
   private:
     driver: bridge
-    
