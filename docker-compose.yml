@@ -18,6 +18,7 @@ services:
     environment:
       POSTGRES_PASSWORD: 1111
     volumes:
+      - ./src/database:/opt/global_chat/sql
       - ./src/database:/docker-entrypoint-initdb.d
     networks:
       - private
@@ -27,4 +28,3 @@ networks:
     driver: bridge
   private:
     driver: bridge
-    
