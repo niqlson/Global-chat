@@ -21,7 +21,7 @@ module.exports = (database) => ({
         return { success: false, data: 'User does not exist!' };
       }
       const data = await database('messages').insert({ userId, message }, '*');
-      return { success: true, data };
+      return { success: true, data: data[0] };
     }
   }
 });

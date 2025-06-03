@@ -16,6 +16,13 @@ const main = async () => {
       const response = { data: result, id, type: 'response' };
       socket.send(JSON.stringify(response));
 
+      if (service === 'messages' && method === 'create' && result.success) {
+        const message = { data: result.data, type: 'message' };
+        const packet = JSON.stringify(message);
+        for (const connection of wss.clients) {
+          connection.send(packet);
+        }
+      }
     });
   });
 };
