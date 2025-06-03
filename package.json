@@ -2,7 +2,8 @@
   "scripts": {
     "test": "npm run -s lint",
     "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.json\"",
-    "fix": "eslint . --fix && prettier --write \"**/*.js\" \"**/*.json\""
+    "fix": "eslint . --fix && prettier --write \"**/*.js\" \"**/*.json\"",
+    "server": "node src/backend/main.js"
   },
   "devDependencies": {
     "eslint": "^9.26.0",
@@ -13,6 +14,7 @@
   },
   "dependencies": {
     "knex": "^3.1.0",
-    "pg": "^8.16.0"
+    "pg": "^8.16.0",
+    "ws": "^8.18.2"
   }
 }
