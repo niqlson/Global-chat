@@ -28,8 +28,7 @@ input.value = '';
 
 input.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') return;
-  const event = new CustomEvent('click');
-  sendButton.dispatchEvent(event)
+  sendButton.dispatchEvent(new CustomEvent('click'))
 });
 
 const generateRandomKey = (bytes = 16) => {
@@ -42,7 +41,7 @@ const generateRandomKey = (bytes = 16) => {
   if (localStorage.getItem('id') === null) {
    const key = generateRandomKey();
     localStorage.setItem('id', key);
-    api.users.create({ id: key });
+    await api.users.create({ id: key });
   }
   const id = localStorage.getItem('id');
   const { data: messages } = await api.messages.get();
