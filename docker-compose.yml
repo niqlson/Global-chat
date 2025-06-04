@@ -43,8 +43,8 @@ services:
     networks:
       - private
 
-  volumes:
-    postgres_data:
+volumes:
+  postgres_data:
 
 networks:
   public:

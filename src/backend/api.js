@@ -13,7 +13,10 @@ module.exports = (database) => ({
   },
 
   messages: {
-    get: async () => ({ success: true, data: await database('messages') }),
+    get: async () => ({
+      success: true,
+      data: await database('messages').orderBy('createdAt')
+    }),
   
     create: async ({ userId, message }) => {
       const user = await database('users').where({ id: userId }).first();

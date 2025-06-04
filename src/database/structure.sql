@@ -2,9 +2,9 @@ create table "users" (
   "id" char(32)
 );
 
-alter table if not exists "users" add constraint "pkUsers" primary key ("id");
+alter table "users" add constraint "pkUsers" primary key ("id");
 
-create table if not exists "messages" (
+create table "messages" (
   "message"   text not null check (length("message") >= 1),
   "userId"    char(32),
   "createdAt" timestamptz default current_timestamp
