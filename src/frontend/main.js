@@ -1,8 +1,8 @@
 'use strict';
 
-import WebSocketTransport from "./WebSocketTransport.js";
-import structure from "./structure.js";
-import scaffold from "./scaffold.js";
+import WebSocketTransport from './WebSocketTransport.js';
+import structure from './structure.js';
+import scaffold from './scaffold.js';
 
 const input = document.getElementById('messageInput');
 const chat = document.getElementById('chat');
@@ -16,19 +16,19 @@ const putMessage = (message, isOwn) => {
   messageDiv.className = `message ${isOwn ? 'my-message' : 'other-message'}`;
   messageDiv.textContent = message;
   chat.appendChild(messageDiv);
-  };
+};
 
 sendButton.addEventListener('click', () => {
   const message = input.value.trim();
   if (message.length === 0) return;
   const userId = localStorage.getItem('id');
   api.messages.create({ userId, message });
-input.value = '';
+  input.value = '';
 });
 
 input.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') return;
-  sendButton.dispatchEvent(new CustomEvent('click'))
+  sendButton.dispatchEvent(new CustomEvent('click'));
 });
 
 const generateRandomKey = (bytes = 16) => {
@@ -39,7 +39,7 @@ const generateRandomKey = (bytes = 16) => {
 
 (async () => {
   if (localStorage.getItem('id') === null) {
-   const key = generateRandomKey();
+    const key = generateRandomKey();
     localStorage.setItem('id', key);
     await api.users.create({ id: key });
   }

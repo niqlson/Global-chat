@@ -9,15 +9,15 @@ module.exports = (database) => ({
       }
       await database.insert({ id }).into('users');
       return { success: true, data: { id } };
-    }
+    },
   },
 
   messages: {
     get: async () => ({
       success: true,
-      data: await database('messages').orderBy('createdAt')
+      data: await database('messages').orderBy('createdAt'),
     }),
-  
+
     create: async ({ userId, message }) => {
       const user = await database('users').where({ id: userId }).first();
       if (user === undefined) {
@@ -25,6 +25,6 @@ module.exports = (database) => ({
       }
       const data = await database('messages').insert({ userId, message }, '*');
       return { success: true, data: data[0] };
-    }
-  }
+    },
+  },
 });
