@@ -27,7 +27,7 @@ sendButton.addEventListener('click', () => {
 });
 
 input.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') return;
+  if (event.key !== 'Enter') return;
   sendButton.dispatchEvent(new CustomEvent('click'));
 });
 
