@@ -8,7 +8,7 @@ const input = document.getElementById('messageInput');
 const chat = document.getElementById('chat');
 const sendButton = document.getElementById('sendButton');
 
-const ws = await new WebSocketTransport('ws://192.168.31.66:8080');
+const ws = await new WebSocketTransport('ws://127.0.0.1:8080');
 const api = scaffold(structure, ws);
 
 const putMessage = (message, isOwn) => {
