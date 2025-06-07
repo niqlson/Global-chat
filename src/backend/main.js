@@ -29,10 +29,10 @@ const main = async () => {
       connection.send(packet);
     }
   });
-  wss.on('connection', (socket) => {
-    socket.on('message', (rawData) => {
+  wss.on('connection', async (socket) => {
+    for await (const [rawData] of events.on(socket, 'message')) {
       queue.add({ socket, rawData });
-    });
+    }
   });
 };
 
