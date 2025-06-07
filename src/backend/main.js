@@ -5,6 +5,7 @@ const config = require('./config.json');
 const database = require('knex')(config.database);
 const api = require('./api.js')(database);
 const ProcesQueue = require('./ProcesQueue.js');
+const events = require('node:events');
 
 const options = { ...config.network, clientTracking: true };
 
@@ -26,11 +27,11 @@ const process = async ({ socket, rawData, wss }) => {
 const main = async () => {
   const wss = new ws.WebSocketServer(options);
   const queue = new ProcesQueue(100, process);
-  wss.on('connection', (socket) => {
-    socket.on('message', async (rawData) => {
+  for await (const [socket] of events.on(wss, 'connection')) {
+    for await (const [rawData] of events.on(wss, 'message')) {
       await queue.add({ socket, rawData, wss });
-    });
-  });
+    };
+  }
 };
 
 main();
