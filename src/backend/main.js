@@ -29,11 +29,11 @@ const main = async () => {
       connection.send(packet);
     }
   });
-  for await (const [socket] of events.on(wss, 'connection')) {
-    for await (const [rawData] of events.on(socket, 'message')) {
-      await queue.add({ socket, rawData });
-    };
-  }
+  wss.on('connection', (socket) => {
+    socket.on('message', (rawData) => {
+      queue.add({ socket, rawData });
+    });
+  });
 };
 
 main();
