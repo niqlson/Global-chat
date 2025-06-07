@@ -3,7 +3,7 @@
 const ws = require('ws');
 const config = require('./config.json');
 const database = require('knex')(config.database);
-const ProcesQueue = require('./ProcesQueue.js');
+const ProcessQueue = require('./ProcessQueue.js');
 const events = require('node:events');
 
 const options = { ...config.network, clientTracking: true };
@@ -21,7 +21,7 @@ const process = async ({ socket, rawData }) => {
 
 const main = async () => {
   const wss = new ws.WebSocketServer(options);
-  const queue = new ProcesQueue(100, process);
+  const queue = new ProcessQueue(100, process);
   ee.on('message', (data) => {
     const message = { data, type: 'message' };
     const packet = JSON.stringify(message);

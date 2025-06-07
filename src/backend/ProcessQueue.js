@@ -1,6 +1,6 @@
 'use strict';
 
-class ProcesQueue {
+class ProcessQueue {
   constructor(channels, process) {
     this.channels = channels;
     this.process = process;
@@ -35,4 +35,4 @@ class ProcesQueue {
   }
 }
 
-module.exports = ProcesQueue;
+module.exports = ProcessQueue;
