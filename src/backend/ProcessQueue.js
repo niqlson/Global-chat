@@ -9,11 +9,6 @@ class ProcessQueue {
   }
 
   add(task) {
-    if (this.active >= this.channels) {
-      return new Promise((resolve, reject) => {
-        this.waiting.push({ task, resolve, reject });
-      });
-    }
     return new Promise((resolve, reject) => {
       if (this.active >= this.channels) {
         return void this.waiting.push({ task, resolve, reject });

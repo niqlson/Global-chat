@@ -31,7 +31,7 @@ const main = async () => {
   });
   wss.on('connection', async (socket) => {
     for await (const [rawData] of events.on(socket, 'message')) {
-      queue.add({ socket, rawData });
+      await queue.add({ socket, rawData });
     }
   });
 };
