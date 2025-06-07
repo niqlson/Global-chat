@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (database) => ({
+module.exports = (database, ee) => ({
   users: {
     create: async ({ id }) => {
       const user = await database('users').where({ id }).first();
@@ -24,6 +24,7 @@ module.exports = (database) => ({
         return { success: false, data: 'User does not exist!' };
       }
       const data = await database('messages').insert({ userId, message }, '*');
+      ee.emit('message', data[0]);
       return { success: true, data: data[0] };
     },
   },
